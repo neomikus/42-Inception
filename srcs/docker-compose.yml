@@ -1,0 +1,13 @@
+name: inception
+
+services:
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "443:80"
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    tty: true
+  
