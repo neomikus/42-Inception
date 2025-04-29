@@ -5,9 +5,20 @@ services:
     build: ./requirements/nginx
     container_name: nginx
     ports:
-      - "443:80"
+      - "4443:443"
+    volumes:
+      - ./www:/data/www
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
     tty: true
+    volumes:
+      - ./www:/data/www
+    expose:
+      - 9000
+    depends_on:
+      - mariadb
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
   
