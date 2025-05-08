@@ -1,24 +1,34 @@
 name: inception
 
+networks:
+  mynetwork:
+
 services:
   nginx:
     build: ./requirements/nginx
     container_name: nginx
     ports:
-      - "4443:443"
+      - "8080:80"
     volumes:
-      - ./www:/data/www
+      - ./www:/var/www/html
+    networks:
+      - mynetwork
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
-    tty: true
     volumes:
-      - ./www:/data/www
+      - ./www:/var/www/html
     expose:
       - 9000
     depends_on:
       - mariadb
+    networks:
+      - mynetwork
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb
+    expose:
+      - 3306
+    networks:
+      - mynetwork
   
