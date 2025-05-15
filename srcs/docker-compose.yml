@@ -17,7 +17,7 @@ services:
     build: ./requirements/wordpress
     container_name: wordpress
     volumes:
-      - ./www:/var/www/html
+      - /home/fcasaubo/data/site:/var/www/html
     expose:
       - 9000
     depends_on:
