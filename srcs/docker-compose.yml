@@ -8,11 +8,14 @@ services:
     build: ./requirements/nginx
     container_name: nginx
     ports:
-      - "8080:80"
+      - "443:443"
     volumes:
       - /home/fcasaubo/data/site:/var/www/html
     networks:
       - mynetwork
+    secrets:
+      - ssl-cert
+      - ssl-key
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
@@ -34,3 +37,8 @@ services:
     volumes:
       - /home/fcasaubo/data/database:/var/lib/mysql
   
+secrets:
+  ssl-cert:
+    file: ../secrets/self-signed.crt
+  ssl-key:
+    file: ../secrets/self-signed.key

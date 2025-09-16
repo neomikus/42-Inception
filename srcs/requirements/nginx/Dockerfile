@@ -8,6 +8,6 @@ RUN apk add openssl
 COPY nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /etc/nginx/http.d/default.conf
 
-EXPOSE 8080 80
+EXPOSE 443 443
 
 CMD ["nginx", "-g", "daemon off;"]
