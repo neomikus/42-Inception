@@ -6,6 +6,7 @@ RUN apk add nginx
 RUN apk add openssl
 
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY self-signed.conf /etc/nginx/self-signed.conf
 RUN rm -rf /etc/nginx/http.d/default.conf
 
 EXPOSE 443 443

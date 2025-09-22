@@ -10,7 +10,6 @@ COPY php.ini /etc/php83/
 
 COPY wp-install.sh /
 RUN mkdir -p /var/www/html
-RUN cd /var/www/html
-RUN chmod +x /wp-install.sh
+RUN chmod +x wp-install.sh
 
-CMD ["/wp-install.sh"]
+CMD ["./wp-install.sh"]
