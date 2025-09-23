@@ -18,7 +18,11 @@ services:
     secrets:
       - ssl-cert
       - ssl-key
+    depends_on:
+      - wordpress
   wordpress:
+    env_file:
+      - .env
     build: ./requirements/wordpress
     container_name: wordpress
     volumes:
@@ -29,6 +33,12 @@ services:
       - mariadb
     networks:
       - mynetwork
+    secrets:
+      - db-user
+      - db-password
+      - wp-admin-user
+      - wp-admin-password
+      - wp-user-password
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb
@@ -44,3 +54,13 @@ secrets:
     file: ../secrets/self-signed.crt
   ssl-key:
     file: ../secrets/self-signed.key
+  db-user:
+    file: ../secrets/db-user
+  db-password:
+    file: ../secrets/db-password
+  wp-admin-user:
+    file: ../secrets/wp-admin-user
+  wp-admin-password:
+    file: ../secrets/wp-admin-password
+  wp-user-password:
+    file: ../secrets/wp-user-password
