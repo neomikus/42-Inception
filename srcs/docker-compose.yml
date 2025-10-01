@@ -48,6 +48,9 @@ services:
       - mynetwork
     volumes:
       - /home/fcasaubo/data/database:/var/lib/mysql
+    secrets:
+      - db-user
+      - db-password
 
 secrets:
   ssl-cert:
