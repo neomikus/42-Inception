@@ -1,7 +1,7 @@
 name: inception
 
 networks:
-  mynetwork:
+  inception-network:
 
 services:
   nginx:
@@ -12,9 +12,10 @@ services:
     ports:
       - "443:443"
     volumes:
-      - /home/fcasaubo/data/site:/var/www/html
+      - /home/fcasaubo/data/site:/var/www/wordpress
+      - /home/fcasaubo/data/wordle:/var/www/wordle
     networks:
-      - mynetwork
+      - inception-network
     secrets:
       - ssl-cert
       - ssl-key
@@ -26,13 +27,13 @@ services:
     build: ./requirements/wordpress
     container_name: wordpress
     volumes:
-      - /home/fcasaubo/data/site:/var/www/html
+      - /home/fcasaubo/data/site:/var/www/wordpress
     expose:
       - 9000
     depends_on:
       - mariadb
     networks:
-      - mynetwork
+      - inception-network
     secrets:
       - db-user
       - db-password
@@ -45,7 +46,7 @@ services:
     expose:
       - 3306
     networks:
-      - mynetwork
+      - inception-network
     volumes:
       - /home/fcasaubo/data/database:/var/lib/mysql
     secrets:
