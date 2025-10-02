@@ -9,7 +9,7 @@ DATABASE	= $(DATA_DIR)/database
 SITE		= $(DATA_DIR)/site
 ENV			= srcs/.env
 
-SECRETS_LIST_PRE = db-user db-password wp-admin-user wp-admin-password wp-user-password
+SECRETS_LIST_PRE = db-user db-password wp-admin-user wp-admin-password wp-user-password redis-password
 SECRETS_LIST = $(addprefix $(SECRETS_DIR), $(SECRETS_LIST_PRE))
 
 all: build
@@ -47,7 +47,8 @@ down:
 	sudo docker compose -f $(DOCKER_COMPOSE) down
 
 clean: down
-	sudo docker volume prune
+	sudo docker volume rm database
+	sudo docker volume rm site
 	sudo rm -rf $(DATA_DIR)/*
 
 fclean: clean
