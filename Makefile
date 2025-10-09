@@ -47,11 +47,12 @@ down:
 	sudo docker compose -f $(DOCKER_COMPOSE) down
 
 clean: down
-	sudo docker volume rm database
-	sudo docker volume rm site
+	sudo docker volume rm -f database
+	sudo docker volume rm -f site
 	sudo rm -rf $(DATA_DIR)/*
 
 fclean: clean
+	sudo docker rm -f wordpress nginx redis wordpress
 	rm -rf $(SECRETS_DIR) $(ENV)
 
 re: clean all
