@@ -1,5 +1,5 @@
-#alpine:latest is 3.21.X at time of writing this dockerfile
-FROM alpine:3.20.6
+#alpine:latest is 3.22.X at time of writing this dockerfile
+FROM alpine:3.21.5
 
 # Installing php83 specifically since it was the latest when I started
 RUN apk update && apk upgrade

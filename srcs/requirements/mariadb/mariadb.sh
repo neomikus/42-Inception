@@ -2,8 +2,10 @@
 
 dbname=$(cut -d '\n' -f2 /run/secrets/db-user)
 dbpwd=$(cut -d '\n' -f2 /run/secrets/db-password)
+dbrootpwd=$(cut -d '\n' -f2 /run/secrets/db-password)
 
 cat <<EOF > /etc/mysql/init.sql
+ALTER USER 'root'@'localhost' IDENTIFIED BY '$dbrootpwd';
 CREATE DATABASE IF NOT EXISTS wordpress;
 CREATE OR REPLACE USER '$dbname'@'%' IDENTIFIED BY '$dbpwd';
 GRANT ALL PRIVILEGES ON *.* TO '$dbname'@'%' WITH GRANT OPTION;

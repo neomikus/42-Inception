@@ -53,6 +53,7 @@ services:
     secrets:
       - db-user
       - db-password
+      - db-root-password
   redis:
     build: ./requirements/redis
     container_name: redis
@@ -72,6 +73,8 @@ secrets:
     file: ../secrets/db-user
   db-password:
     file: ../secrets/db-password
+  db-root-password:
+    file: ../secrets/db-root-password
   wp-admin-user:
     file: ../secrets/wp-admin-user
   wp-admin-password:

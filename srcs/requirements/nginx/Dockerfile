@@ -1,5 +1,5 @@
-#alpine:latest is 3.21.X at time of writing this dockerfile
-FROM alpine:3.20.6
+#alpine:latest is 3.22.X at time of writing this dockerfile
+FROM alpine:3.21.5
 
 RUN apk update && apk upgrade
 RUN apk add nginx openssl git
